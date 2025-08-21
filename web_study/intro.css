@@ -1,12 +1,37 @@
 *{
     margin: 0px;
-    height: 0px;
 }
 #logo_box{
     min-height: 55px;
     min-width: 171px;
 }
 .explanation_box{
-    margin-left: 88px;
-    font-size: 64px;
+    position: relative;  /* 상대 위치 속성 */
+    margin-top:  166px;
+    margin-left: 111px;
+    font-size: 32px;
+
+}
+
+.explanation_box h1{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%); /* 가로 정렬 중앙 */
+    opacity: 0;
+    white-space: nowrap;      /* 줄바꿈 방지 */
+    animation: fade 30s linear 1;
+}
+.explanation_box h1:nth-child(1) { animation-delay: 0s; }
+.explanation_box h1:nth-child(2) { animation-delay: 5s; }
+.explanation_box h1:nth-child(3) { animation-delay: 10s; }
+.explanation_box h1:nth-child(4) { animation-delay: 15s; }
+.explanation_box h1:nth-child(5) { animation-delay: 20s; }
+.explanation_box h1:nth-child(6) { animation-delay: 25s; }
+
+
+
+@keyframes fade {
+  0%, 16.666% { opacity: 0; }       /* 나타나기 전 */
+  16.667%, 33.333% { opacity: 1; }  /* 텍스트가 보이는 구간 */
+  33.334%, 100% { opacity: 0; }     /* 사라지고 다음 텍스트로 */
 }

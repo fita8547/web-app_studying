@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 텍스트 애니메이션</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .text-box {
+      position: relative;
+      height: 40px; /* 텍스트 높이 */
+      width: 100%;  /* 전체 너비 사용 */
+      overflow: hidden;
+      font-size: 24px;
+    }
+
+    .text-box span {
+      position: absolute;
+      left: 50%;                /* 가운데 기준 */
+      transform: translateX(-50%); /* 가로 정렬 중앙 */
+      opacity: 0;
+      white-space: nowrap;      /* 줄바꿈 방지 */
+      animation: fade 8s linear infinite;
+    }
+
+    .text-box span:nth-child(1) { animation-delay: 0s; }
+    .text-box span:nth-child(2) { animation-delay: 2s; }
+    .text-box span:nth-child(3) { animation-delay: 4s; }
+    .text-box span:nth-child(4) { animation-delay: 6s; }
+
+    @keyframes fade {
+      0%   { opacity: 0; }
+      5%   { opacity: 0; }
+      25%  { opacity: 0; }
+      30%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    #nextBtn {
+      display: none;
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    #nextBtn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-box">
+    <span>첫 번째 글자</span>
+    <span>두 번째 글자</span>
+    <span>세 번째 글자</span>
+    <span>마지막 글자</span>
+  </div>
+
+  <button id="nextBtn" onclick="location.href='다음페이지.html'">다음 페이지로</button>
+
+  <script>
+    // 마지막 텍스트 끝난 뒤 버튼 표시
+    setTimeout(() => {
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }, 8000); // 8초 뒤 버튼 표시
+  </script>
+
+</body>
+</html>
