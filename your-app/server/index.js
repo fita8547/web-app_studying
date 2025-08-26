@@ -1,0 +1,34 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB 연결 성공"))
+.catch(err => console.error("❌ MongoDB 연결 실패:", err));
+
+const Idea = mongoose.model('Idea', new mongoose.Schema({
+  title: String,
+  content: String,
+  date: { type: Date, default: Date.now }
+}));
+
+app.get('/ideas', async (req, res) => {
+  const ideas = await Idea.find();
+  res.json(ideas);
+});
+
+app.post('/ideas', async (req, res) => {
+  const idea = new Idea(req.body);
+  await idea.save();
+  res.json(idea);
+});
+
+app.listen(5000, () => console.log("🚀 서버 실행 중: http://localhost:5000"));
